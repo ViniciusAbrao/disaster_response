@@ -9,7 +9,8 @@ from nltk.tokenize import word_tokenize
 
 from flask import Flask
 from flask import render_template, request, jsonify
-from plotly.graph_objs import Bar
+#from plotly.graph_objs import Bar
+import plotly.graph_objs as gob
 from sklearn.externals import joblib
 from sqlalchemy import create_engine
 
@@ -52,7 +53,25 @@ def index():
     graphs = [
         {
             'data': [
-                Bar(
+                gob.Bar(
+                    x=genre_names,
+                    y=genre_counts
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Message Genres',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Genre"
+                }
+            }
+        },
+        {
+            'data': [
+                gob.Bar(
                     x=genre_names,
                     y=genre_counts
                 )
