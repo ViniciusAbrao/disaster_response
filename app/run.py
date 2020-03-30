@@ -2,6 +2,8 @@ import json
 import plotly
 import pandas as pd
 
+import pickle
+
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
@@ -26,11 +28,13 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-engine = create_engine('sqlite:///../data/YourDatabaseName.db')
-df = pd.read_sql_table('YourTableName', engine)
+engine = create_engine('sqlite:///../data/DisasterResponse.db')
+df = pd.read_sql_table('DisasterResponse', engine)
 
 # load model
-model = joblib.load("../models/your_model_name.pkl")
+#model = joblib.load("../models/classifier.pkl")
+with open("../models/classifier.pkl", 'rb') as file:
+    model = pickle.load(file)
 
 
 # index webpage displays cool visuals and receives user input text for model
@@ -40,7 +44,7 @@ def index():
     
     # extract data needed for visuals
     # TODO: Below is an example - modify to extract data for your own visuals
-    genre_counts = df.groupby('genre').count()['message']
+    genre_counts = df.groupby('related').count()['id']
     genre_names = list(genre_counts.index)
     
     # create visuals
