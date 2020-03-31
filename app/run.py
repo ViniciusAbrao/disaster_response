@@ -45,7 +45,7 @@ def index():
     
     # extract data needed for visuals
     # TODO: Below is an example - modify to extract data for your own visuals
-    genre_counts = df.groupby('related').count()['id']
+    genre_counts = df[df.columns[2:]].sum(axis=0).sort_values()
     genre_names = list(genre_counts.index)
     
     my_graphs=[]
@@ -60,18 +60,16 @@ def index():
         {
             'data': [
                 gob.Bar(
-                    x=genre_names,
-                    y=genre_counts
+                    y=genre_names,
+                    x=genre_counts,
+                    orientation='h'
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Message Genres',
-                'yaxis': {
-                    'title': "Count"
-                },
+                'title': 'Number of total occurrences per category',
                 'xaxis': {
-                    'title': "Genre"
+                    'title': "Count"
                 }
             }
         },
