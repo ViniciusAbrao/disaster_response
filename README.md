@@ -20,7 +20,7 @@ There are 36 categories in which the message can be simultaneously classified.
 
 The first step is the ETL pipeline which takes the data from files disaster_categories.csv and disaster_messages.csv.
 The steps of lemmatize, normalize case, and remove leading/trailing white space are applied to the texts messages.
-The categories columns have binary values of 0 and 1, if the correspondent message is classified (1) or not (1) in each category.
+The categories columns have binary values of 0 and 1, if the correspondent message is classified (1) or not (0) in each category.
 Text and categories are merged in a final pandas data Frame and converted to a SQL database named DisasterResponse.db.
 
 The second step is the ML pipeline. It initially takes the DisasterResponse.db with the clean data.
