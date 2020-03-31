@@ -48,6 +48,12 @@ def index():
     genre_counts = df.groupby('related').count()['id']
     genre_names = list(genre_counts.index)
     
+    my_graphs=[]
+    for column in df.columns[2:]:
+        new_graph=gob.Histogram(x=df[column],name= column)
+        my_graphs.append(new_graph)
+    
+    
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
@@ -70,20 +76,16 @@ def index():
             }
         },
         {
-            'data': [
-                gob.Bar(
-                    x=genre_names,
-                    y=genre_counts
-                )
-            ],
+            'data': my_graphs,
 
             'layout': {
-                'title': 'Distribution of Message Genres',
+                'xbins': [0,1],
+                'title': 'Distribution of Categories in Training Dataset',
                 'yaxis': {
                     'title': "Count"
                 },
                 'xaxis': {
-                    'title': "Genre"
+                    'title': "Values"
                 }
             }
         }
