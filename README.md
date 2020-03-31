@@ -34,22 +34,22 @@ The web app shows in the Figures an overview of the dataset used in the training
 In Figure 1 we can see the number of total occurrences per category.
 Figure 2 presents the distribution of data with the counts of 0 and 1 in each category.
 
-In the github repo the file structure of the project is:
+### In the github repo the file structure of the project is:
 
-app
+- app
 | - template
 | |- master.html  # main page of web app
 | |- go.html  # classification result page of web app
 |- run.py  # Flask file that runs app
 
-data
+- data
 |- disaster_categories.csv  # data to process 
 |- disaster_messages.csv  # data to process
 |- process_data.py
 |- InsertDatabaseName.db   # database to save clean data to
 
-models
+- models
 |- train_classifier.py
 |- classifier.pkl  # saved model 
 
-README.md
+- README.md
